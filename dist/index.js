@@ -1,0 +1,7 @@
+import { styles } from "./style";
+export { default as Colors } from "./color/_color";
+export { default as Scheme } from "./color/_scheme";
+export { default as Fonts } from "./font/_font";
+export { default as Sizes } from "./size/_size";
+export default styles;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJzdHlsZXMiLCJkZWZhdWx0IiwiQ29sb3JzIiwiU2NoZW1lIiwiRm9udHMiLCJTaXplcyJdLCJzb3VyY2VzIjpbIi4uL3NyYy9pbmRleC50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge3N0eWxlc30gZnJvbSAnLi9zdHlsZSc7XG5cbmV4cG9ydCB7ZGVmYXVsdCBhcyBDb2xvcnN9IGZyb20gJy4vY29sb3IvX2NvbG9yJztcbmV4cG9ydCB7ZGVmYXVsdCBhcyBTY2hlbWV9IGZyb20gJy4vY29sb3IvX3NjaGVtZSc7XG5leHBvcnQge2RlZmF1bHQgYXMgRm9udHN9IGZyb20gJy4vZm9udC9fZm9udCc7XG5leHBvcnQge2RlZmF1bHQgYXMgU2l6ZXN9IGZyb20gJy4vc2l6ZS9fc2l6ZSc7XG5cbmV4cG9ydCBkZWZhdWx0IHN0eWxlcztcbiJdLCJtYXBwaW5ncyI6IkFBQUEsU0FBUUEsTUFBUjtBQUVBLFNBQVFDLE9BQU8sSUFBSUMsTUFBbkI7QUFDQSxTQUFRRCxPQUFPLElBQUlFLE1BQW5CO0FBQ0EsU0FBUUYsT0FBTyxJQUFJRyxLQUFuQjtBQUNBLFNBQVFILE9BQU8sSUFBSUksS0FBbkI7QUFFQSxlQUFlTCxNQUFmIn0=

@@ -10,8 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --p tsconfig.build.json",
-    "build:js": "babel src --out-dir dist --config-file .babelrc.json --extensions \".ts,.tsx\" --ignore 'src/__test__/*' --source-maps inline",
-    "build:lib": "./node_modules/.bin/babel src --out-dir dist --config-file .babelrc.json --extensions '.ts,.tsx' --ignore 'src/__test__/*'",
+    "build:js": "babel src --out-dir dist --config-file ./.babelrc.json --extensions \".ts,.tsx\" --ignore 'src/__test__/*' --source-maps inline",
+    "build:lib": "./node_modules/.bin/babel src --out-dir dist --config-file ./.babelrc.json --extensions '.ts,.tsx' --ignore 'src/__test__/*'",
     "publishD": "yarn build && yarn publish"
   },
   "dependencies": {
