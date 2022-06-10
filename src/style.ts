@@ -67,5 +67,3 @@ const style = StyleSheet.create({
   ...imageStyle,
   ...shadowStyle,
 });
-
-export default style;

@@ -1,9 +1,7 @@
-/* eslint-disable import/prefer-default-export */
-
-import { isArray, isEmpty } from "lodash";
-import { ColorSchemeName } from "react-native";
-import Colors from "./color/_color";
-import { ColorKeyType } from "./color/_colors-default";
+import {isArray, isEmpty} from 'lodash';
+import {ColorSchemeName} from 'react-native';
+import Colors from './color/_color';
+import {ColorKeyType} from './color/_colors-default';
 
 export interface IGetThemeColorProps {
   colorLightMode?: ColorKeyType;
@@ -14,13 +12,13 @@ export interface IGetThemeColorProps {
 export const generateStyleValue = (
   variants: any,
   values: any,
-  defaultValues?: any
+  defaultValues?: any,
 ): any => {
   const res: any = {};
   if (!isEmpty(variants) && !isEmpty(values)) {
     try {
-      Object.keys(variants).forEach((variant) => {
-        Object.keys(values).forEach((valueKey) => {
+      Object.keys(variants).forEach(variant => {
+        Object.keys(values).forEach(valueKey => {
           let className;
           if (valueKey) {
             className = `${variant}-${valueKey}`;
@@ -31,20 +29,20 @@ export const generateStyleValue = (
           const value = values?.[valueKey as any];
           let obj: any = {};
           if (isArray(att)) {
-            att.forEach((i) => {
+            att.forEach(i => {
               obj[i] = value;
             });
           } else {
             obj[att] = value;
           }
           if (defaultValues) {
-            obj = { ...obj, ...defaultValues };
+            obj = {...obj, ...defaultValues};
           }
           res[className] = obj;
         });
       });
     } catch (error) {
-      console.error("Generate style value errors", { error });
+      console.error('Generate style value errors', {error});
     }
   }
   return res;
@@ -61,11 +59,11 @@ export const getColorValue = (color?: string) => {
 };
 
 export const getThemeColor = ({
-  colorDarkMode = "white",
-  colorLightMode = "black",
+  colorDarkMode = 'white',
+  colorLightMode = 'black',
   colorScheme,
 }: IGetThemeColorProps) => {
-  if (colorScheme === "dark") {
+  if (colorScheme === 'dark') {
     return colorDarkMode;
   }
   return colorLightMode;

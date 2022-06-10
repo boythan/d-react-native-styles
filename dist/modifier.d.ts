@@ -1,5 +1,5 @@
-import { ColorSchemeName } from "react-native";
-import { ColorKeyType } from "./color/_colors-default";
+import { ColorSchemeName } from 'react-native';
+import { ColorKeyType } from './color/_colors-default';
 export interface IGetThemeColorProps {
     colorLightMode?: ColorKeyType;
     colorDarkMode?: ColorKeyType;
