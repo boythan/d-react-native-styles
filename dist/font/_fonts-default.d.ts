@@ -37,5 +37,5 @@ declare const DefaultFont: {
         baseFontSize: number;
     };
 };
-export declare type AppFontKeyType = keyof typeof DefaultFont;
+export declare type FontKeyType = keyof typeof DefaultFont;
 export default DefaultFont;

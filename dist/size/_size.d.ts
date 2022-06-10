@@ -1,4 +1,4 @@
-import { AppSizeKeyType } from './_sizes-default';
+import { SizeKeyType } from './_sizes-default';
 export declare class AppSizeClass {
     [key: string]: any;
     constructor();
@@ -8,7 +8,7 @@ export declare class AppSizeClass {
      * sizes - map of keys and size values e.g {inputHeight: 50, buttonHeight: 30}
      */
     loadSizes(sizes: {
-        [key in Partial<AppSizeKeyType>]: string | number;
+        [key in Partial<SizeKeyType>]: string | number;
     }): void;
 }
 declare const Sizes: AppSizeClass;

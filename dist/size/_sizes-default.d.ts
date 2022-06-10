@@ -43,5 +43,5 @@ declare const DefaultSize: {
     borderRadiusLarge: number;
     borderRadiusXLarge: number;
 };
-export declare type AppSizeKeyType = keyof typeof DefaultSize;
+export declare type SizeKeyType = keyof typeof DefaultSize;
 export default DefaultSize;

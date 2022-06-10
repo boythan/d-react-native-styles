@@ -10,6 +10,5 @@ export declare class ColorsClass {
         [key: string]: string;
     }): void;
 }
-export declare const isDark: (color: string) => boolean;
 declare const Colors: ColorsClass;
 export default Colors;

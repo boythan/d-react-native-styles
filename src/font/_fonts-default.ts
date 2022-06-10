@@ -58,6 +58,6 @@ const DefaultFont = {
   },
 };
 
-export type AppFontKeyType = keyof typeof DefaultFont;
+export type FontKeyType = keyof typeof DefaultFont;
 
 export default DefaultFont;

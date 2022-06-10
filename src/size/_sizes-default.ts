@@ -53,6 +53,6 @@ const DefaultSize = {
   borderRadiusXLarge: 12,
 };
 
-export type AppSizeKeyType = keyof typeof DefaultSize;
+export type SizeKeyType = keyof typeof DefaultSize;
 
 export default DefaultSize;
