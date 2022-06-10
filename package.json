@@ -1,6 +1,6 @@
 {
   "name": "d-react-native-styles",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
@@ -18,8 +18,7 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "react": "17.0.2",
-    "react-native": "0.68.2",
-    "tinycolor2": "^1.4.2"
+    "react-native": "0.68.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -32,7 +31,6 @@
     "@types/lodash": "^4.14.182",
     "@types/react-native": "^0.67.3",
     "@types/react-test-renderer": "^17.0.1",
-    "@types/tinycolor2": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "babel-jest": "^26.6.3",
