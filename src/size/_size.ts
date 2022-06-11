@@ -1,11 +1,11 @@
-import _ from 'lodash';
-import DefaultSize, {SizeKeyType} from './_sizes-default';
+import _ from "lodash";
+import DefaultSize, {SizeKeyType} from "./_sizes-default";
 
 export class AppSizeClass {
   [key: string]: any;
 
   constructor() {
-    Object.assign(this, DefaultSize);
+      Object.assign(this, DefaultSize);
   }
 
   /**
@@ -14,9 +14,9 @@ export class AppSizeClass {
    * sizes - map of keys and size values e.g {inputHeight: 50, buttonHeight: 30}
    */
   loadSizes(sizes: {[key in Partial<SizeKeyType>]: string | number}) {
-    _.forEach(sizes, (value, key) => {
-      this[key] = value;
-    });
+      _.forEach(sizes, (value, key) => {
+          this[key] = value;
+      });
   }
 }
 

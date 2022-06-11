@@ -9,15 +9,11 @@
  */
 
 import React from 'react';
-import {
-    View
-} from 'react-native';
-import styles from './src';
+import {View} from 'react-native';
+import {styles} from './src';
 
 const App = () => {
-    return (
-        <View style={styles("bg-primary w-100 h-100")} />
-    );
+  return <View style={styles('bg-primary w-100 h-100')} />;
 };
 
 export default App;
