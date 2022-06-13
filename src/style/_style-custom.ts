@@ -4,7 +4,7 @@ export class StylesClass {
   [key: string]: any;
 
   constructor() {
-      Object.assign(this.customStyle, {});
+      this.customStyle = {};
   }
 
 
