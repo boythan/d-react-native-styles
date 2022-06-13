@@ -80,7 +80,7 @@ export class FontClass {
 
           "text-small": {
               fontSize: baseSize * 0.8,
-              fontFamily: fontLight,
+              fontFamily: fontRegular,
           },
 
           ...customFonts,
