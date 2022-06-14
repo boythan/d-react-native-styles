@@ -1,5 +1,5 @@
-import {StyleSheet} from "react-native";
-import {generateStyleValue} from "../modifier";
+import { StyleSheet } from "react-native";
+import { generateStyleValue } from "../modifier";
 
 export const FLEX_VALUE = {
     1: 1,
@@ -13,8 +13,17 @@ export const FLEX_VALUE = {
     9: 9,
     10: 10,
 };
+export const DISPLAY_VALUE = {
+    flex: "flex",
+    none: "none",
+};
 
-const flexValueClass = generateStyleValue({flex: "flex"}, FLEX_VALUE);
+const flexValueClass = generateStyleValue({ flex: "flex" }, FLEX_VALUE);
+
+const displayValueClass = generateStyleValue(
+    { display: "display" },
+    DISPLAY_VALUE
+);
 
 const flexStyle = StyleSheet.create({
     //flex
@@ -151,6 +160,7 @@ const flexStyle = StyleSheet.create({
     },
 
     ...flexValueClass,
+    ...displayValueClass,
 });
 
 export default flexStyle;
