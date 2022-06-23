@@ -22,13 +22,8 @@ const DefaultColors = {
     purple: "#791c96",
     pink: "#daa0e8",
     cyan: "#00FFFF",
-    grayDark: "#bfbdbd",
-    greyDark: "#bfbdbd",
     grey: "#d9d9d9",
-    gray: "#d9d9d9",
-    greyColor: "#d9d9d9",
-    greyLight: "#f2f2f2",
-    grayLight: "#f2f2f2",
+   
 };
 
 export type ColorKeyType = keyof typeof DefaultColors | "transparent";
