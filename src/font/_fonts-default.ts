@@ -13,48 +13,48 @@ const DefaultFont = {
     // iosBoldFont: "Cochin",
     // androidBoldFont: "Cochin",
     android: {
+        baseFontSize: 14,
         family: {
-            regular: "Cochin",
-            italic: "Cochin",
+            regular: "system font",
+            italic: "system font",
 
-            thin: "Cochin",
-            thinItalic: "Cochin",
+            thin: "system font",
+            thinItalic: "system font",
 
-            light: "Cochin",
-            lightItalic: "Cochin",
+            light: "system font",
+            lightItalic: "system font",
 
-            semiBold: "Cochin",
-            semiBoldItalic: "Cochin",
+            semiBold: "system font",
+            semiBoldItalic: "system font",
 
-            medium: "Cochin",
-            mediumItalic: "Cochin",
+            medium: "system font",
+            mediumItalic: "system font",
 
-            bold: "Prompt-Bold",
-            boldItalic: "Cochin",
+            bold: "system font",
+            boldItalic: "system font",
         },
-        baseFontSize: 12,
     },
     ios: {
+        baseFontSize: 14,
         family: {
-            regular: "Prompt-Regular",
-            italic: "Prompt-Italic",
+            regular: "system font",
+            italic: "system font",
 
-            thin: "Prompt-Thin",
-            thinItalic: "Prompt",
+            thin: "system font",
+            thinItalic: "system font",
 
-            light: "Prompt-Light",
-            lightItalic: "Prompt",
+            light: "system font",
+            lightItalic: "system font",
 
-            semiBold: "Prompt-SemiBold",
-            semiBoldItalic: "Prompt",
+            semiBold: "system font",
+            semiBoldItalic: "system font",
 
-            medium: "Prompt-Medium",
-            mediumItalic: "Prompt",
+            medium: "system font",
+            mediumItalic: "system font",
 
-            bold: "Prompt-Bold",
-            boldItalic: "Prompt-BoldItalic",
+            bold: "system font",
+            boldItalic: "system font",
         },
-        baseFontSize: 12,
     },
 };
 
