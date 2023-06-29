@@ -1,19 +1,11 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-nested-ternary */
 import _ from "lodash";
-import {StyleSheet} from "react-native";
-import backgroundStyle from "./style/_background";
-import borderStyle from "./style/_border";
-import flexStyle from "./style/_flex";
-import imageStyle from "./style/_image";
-import marginPadding from "./style/_padding-margin";
-import positionStyle from "./style/_position";
-import shadowStyle from "./style/_shadow";
-import textStyle from "./style/_text";
-import widthHeightStyle from "./style/_width-height";
-import CustomStyle from "./style/_style-custom";
+import { StyleSheet } from "react-native";
 
 export const styles = (...args: any) => {
     let styleList: any[] = [];
+    const allStyles = Styles.styles;
 
     for (let i = 0; i < args.length; i++) {
         const arg = args[i];
@@ -48,27 +40,67 @@ export const styles = (...args: any) => {
             }
         }
     }
-    styleList = _.map(styleList, item => {
+    styleList = _.map(styleList, (item) => {
         const styleType = typeof item;
         if (styleType === "string") {
-            return Styles[item];
+            return allStyles[item];
         }
         return item;
     });
     return styleList;
 };
 
-const Styles = StyleSheet.create({
-    ...flexStyle,
-    ...marginPadding,
-    ...backgroundStyle,
-    ...borderStyle,
-    ...widthHeightStyle,
-    ...textStyle,
-    ...positionStyle,
-    ...imageStyle,
-    ...shadowStyle,
-    ...CustomStyle.customStyle
-});
+// const Styles = StyleSheet.create({
+//     ...flexStyle,
+//     ...marginPadding,
+//     ...backgroundStyle,
+//     ...borderStyle,
+//     ...widthHeightStyle,
+//     ...textStyle,
+//     ...positionStyle,
+//     ...imageStyle,
+//     ...shadowStyle,
+//     ...CustomStyle.customStyle,
+// });
 
+class StylesClass {
+    [key: string]: any;
+    styles: any;
 
+    // constructor() {}
+
+    initStyles() {
+        const backgroundStyle = require("./style/_background");
+        const borderStyle = require("./style/_border");
+        const flexStyle = require("./style/_flex");
+
+        const imageStyle = require("./style/_image");
+        const marginPadding = require("./style/_padding-margin");
+        const positionStyle = require("./style/_position");
+        const shadowStyle = require("./style/_shadow");
+        const textStyle = require("./style/_text");
+        const widthHeightStyle = require("./style/_width-height");
+        const CustomStyle = require("./style/_style-custom");
+
+        this.styles = StyleSheet.create({
+            ...flexStyle.default,
+            ...marginPadding.default,
+            ...backgroundStyle.default,
+            ...borderStyle.default,
+            ...widthHeightStyle.default,
+            ...textStyle.default,
+            ...positionStyle.default,
+            ...imageStyle.default,
+            ...shadowStyle.default,
+            ...CustomStyle.customStyle,
+        });
+    }
+}
+
+const Styles = new StylesClass();
+
+export const initStyles = () => {
+    Styles.initStyles();
+};
+
+export default Styles;
