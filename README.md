@@ -22,12 +22,56 @@ yarn add d-react-native-styles
 
 ### Basic Usage
 
-The core of this library is the `styles()` function, which you can import and use to apply utility classes to your React Native components.
+Before using the `styles()` function, it's good practice to initialize your custom styles, especially if you have custom colors, fonts, or sizes. You can create a dedicated function, often named `initStyles()` or similar, in your project (e.g., in `styleConfig.js` or at the root of your app like `App.js` or `index.js`) to centralize these configurations.
+
+This `initStyles()` function would typically call the methods for loading your themes, as described in the "Customizing Styles" section.
+
+**Example of an `initStyles` function (e.g., in `styleConfig.js`):**
+
+```javascript
+// styleConfig.js
+import { Colors, Fonts, Sizes } from 'd-react-native-styles';
+import { Platform } from 'react-native'; // If customizing fonts platform-specifically
+
+export const initStyles = () => {
+  Colors.loadColors({
+    primary: '#007bff',
+    secondary: '#6c757d',
+    // ... your other custom colors
+  });
+
+  const customFontConfig = {
+    [Platform.OS]: {
+      family: {
+        regular: 'YourApp-Regular',
+        bold: 'YourApp-Bold',
+        // ... other font weights
+      },
+      baseFontSize: 16,
+    }
+  };
+  Fonts.loadFonts(customFontConfig); // Add customFonts object as second param if needed
+
+  Sizes.loadSizes({
+    'xs': 8,
+    'sm': 12,
+    // ... your other custom sizes
+  });
+};
+
+// Call this function once at the entry point of your application
+// For example, in your main App.js or index.js:
+// import { initStyles } from './styleConfig'; // Adjust path as needed
+// initStyles();
+```
+
+After setting up your styles, you can use the `styles()` function, which you can import and use to apply utility classes to your React Native components:
 
 ```javascript
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from 'd-react-native-styles';
+// Assuming initStyles() has been called elsewhere, e.g., in App.js or index.js
 
 const MyComponent = () => {
   return (
@@ -42,7 +86,7 @@ const MyComponent = () => {
 export default MyComponent;
 ```
 
-This example applies a primary background color, padding, and rounded corners to the `View`, and styles the `Text` with white color, large font size, and bold font weight.
+This example applies a primary background color, padding, and rounded corners to the `View`, and styles the `Text` with white color, large font size, and bold font weight. Remember that for `bg-primary` and custom fonts/sizes to work as expected, they should be defined during your `initStyles()` call.
 
 ### Customizing Styles
 
