@@ -1,8 +1,13 @@
 {
     "name": "d-react-native-styles",
-    "version": "0.0.20",
+    "version": "1.0.0",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md",
+        "docs"
+    ],
     "scripts": {
         "android": "react-native run-android",
         "ios": "react-native run-ios",
@@ -12,7 +17,7 @@
         "build": "npm run build:types && npm run build:js",
         "build:types": "tsc --p tsconfig.build.json",
         "build:js": "babel src --out-dir dist --config-file ./.babelrc.json --extensions \".ts,.tsx\" --ignore 'src/__test__/*' --source-maps inline",
-        "build:lib": "./node_modules/.bin/babel src --out-dir dist --config-file ./.babelrc.json --extensions '.ts,.tsx' --ignore 'src/__test__/*'",
+        "build:lib": "babel src --out-dir dist --config-file ./.babelrc.json --extensions '.ts,.tsx' --ignore 'src/__test__/*'",
         "publishD": "yarn build && yarn publish"
     },
     "dependencies": {

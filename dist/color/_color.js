@@ -1,0 +1,24 @@
+import _ from "lodash";
+import DefaultColors from "./_colors-default";
+export class ColorsClass {
+  constructor() {
+    Object.assign(this, DefaultColors);
+  }
+  /**
+   * Load custom set of colors
+   * arguments:
+   * colors - map of keys and colors values e.g {grey10: '#20303C', grey20: '#43515C'}
+   */
+
+
+  loadColors(colors) {
+    _.forEach(colors, (value, key) => {
+      this[key] = value;
+    });
+  }
+
+}
+const Colors = new ColorsClass();
+Colors.loadColors(DefaultColors);
+export default Colors;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfIiwiRGVmYXVsdENvbG9ycyIsIkNvbG9yc0NsYXNzIiwiY29uc3RydWN0b3IiLCJPYmplY3QiLCJhc3NpZ24iLCJsb2FkQ29sb3JzIiwiY29sb3JzIiwiZm9yRWFjaCIsInZhbHVlIiwia2V5IiwiQ29sb3JzIl0sInNvdXJjZXMiOlsiLi4vLi4vc3JjL2NvbG9yL19jb2xvci50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgXyBmcm9tIFwibG9kYXNoXCI7XG5pbXBvcnQgRGVmYXVsdENvbG9ycyBmcm9tIFwiLi9fY29sb3JzLWRlZmF1bHRcIjtcblxuZXhwb3J0IGNsYXNzIENvbG9yc0NsYXNzIHtcbiAgW2tleTogc3RyaW5nXTogYW55O1xuXG4gIGNvbnN0cnVjdG9yKCkge1xuICAgICAgT2JqZWN0LmFzc2lnbih0aGlzLCBEZWZhdWx0Q29sb3JzKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBMb2FkIGN1c3RvbSBzZXQgb2YgY29sb3JzXG4gICAqIGFyZ3VtZW50czpcbiAgICogY29sb3JzIC0gbWFwIG9mIGtleXMgYW5kIGNvbG9ycyB2YWx1ZXMgZS5nIHtncmV5MTA6ICcjMjAzMDNDJywgZ3JleTIwOiAnIzQzNTE1Qyd9XG4gICAqL1xuICBsb2FkQ29sb3JzKGNvbG9yczoge1trZXk6IHN0cmluZ106IHN0cmluZ30pIHtcbiAgICAgIF8uZm9yRWFjaChjb2xvcnMsICh2YWx1ZSwga2V5KSA9PiB7XG4gICAgICAgICAgdGhpc1trZXldID0gdmFsdWU7XG4gICAgICB9KTtcbiAgfVxufVxuXG5jb25zdCBDb2xvcnMgPSBuZXcgQ29sb3JzQ2xhc3MoKTtcbkNvbG9ycy5sb2FkQ29sb3JzKERlZmF1bHRDb2xvcnMpO1xuZXhwb3J0IGRlZmF1bHQgQ29sb3JzO1xuIl0sIm1hcHBpbmdzIjoiQUFBQSxPQUFPQSxDQUFQLE1BQWMsUUFBZDtBQUNBLE9BQU9DLGFBQVA7QUFFQSxPQUFPLE1BQU1DLFdBQU4sQ0FBa0I7RUFHdkJDLFdBQVcsR0FBRztJQUNWQyxNQUFNLENBQUNDLE1BQVAsQ0FBYyxJQUFkLEVBQW9CSixhQUFwQjtFQUNIO0VBRUQ7QUFDRjtBQUNBO0FBQ0E7QUFDQTs7O0VBQ0VLLFVBQVUsQ0FBQ0MsTUFBRCxFQUFrQztJQUN4Q1AsQ0FBQyxDQUFDUSxPQUFGLENBQVVELE1BQVYsRUFBa0IsQ0FBQ0UsS0FBRCxFQUFRQyxHQUFSLEtBQWdCO01BQzlCLEtBQUtBLEdBQUwsSUFBWUQsS0FBWjtJQUNILENBRkQ7RUFHSDs7QUFoQnNCO0FBbUJ6QixNQUFNRSxNQUFNLEdBQUcsSUFBSVQsV0FBSixFQUFmO0FBQ0FTLE1BQU0sQ0FBQ0wsVUFBUCxDQUFrQkwsYUFBbEI7QUFDQSxlQUFlVSxNQUFmIn0=

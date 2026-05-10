@@ -1,0 +1,25 @@
+declare const DefaultColors: {
+    primary: string;
+    secondary: string;
+    dark: string;
+    light: string;
+    white: string;
+    black: string;
+    black08: string;
+    black04: string;
+    error: string;
+    success: string;
+    warning: string;
+    disabled: string;
+    muted: string;
+    red: string;
+    green: string;
+    blue: string;
+    yellow: string;
+    purple: string;
+    pink: string;
+    cyan: string;
+    grey: string;
+};
+export declare type ColorKeyType = keyof typeof DefaultColors | "transparent";
+export default DefaultColors;
