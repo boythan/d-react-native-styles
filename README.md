@@ -114,7 +114,9 @@ After `Colors.loadColors({ primary: "..." })`, utilities like `bg-primary` and `
 
 ### Utility classes
 
-Useful references in the repo:
+**Full reference:** [docs/STYLE_UTILITIES.md](docs/STYLE_UTILITIES.md) — every class family under `src/style/` (e.g. `font-size-0`…`font-size-99`, `line-height-0`…`line-height-50`, `font-weight-*`, padding/margin, borders, flex, position, width/height, shadow, image helpers, and custom tokens).
+
+**Quick map:**
 
 | Area | Module | Examples |
 |------|--------|----------|
@@ -123,7 +125,7 @@ Useful references in the repo:
 | Text color | `src/style/_text.ts` | `text-<colorKey>` |
 | Border radius | `src/style/_border.ts` | `rounded`, `rounded-0` … `rounded-4`, `rounded-pill`, directional variants like `rounded-top-2` |
 | Typography | `src/style/_text.ts` + fonts | Presets: `h1`, `text`, `text-large`, …; sizes: `font-size-16`; weights: `font-weight-bold` |
-| Flex, position, width/height, shadows, image | other files under `src/style/` | See each file’s exports |
+| Flex, position, width/height, shadows, image | `src/style/*.ts` | Listed in [docs/STYLE_UTILITIES.md](docs/STYLE_UTILITIES.md) |
 
 Default color keys are listed in `src/color/_colors-default.ts`; default size tokens in `src/size/_sizes-default.ts`.
 
