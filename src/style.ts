@@ -51,7 +51,7 @@ export const styles = (...args: any) => {
     styleList = _.map(styleList, item => {
         const styleType = typeof item;
         if (styleType === "string") {
-            return Styles[item];
+            return Styles[item] ?? CustomStyle.customStyle[item];
         }
         return item;
     });

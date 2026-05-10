@@ -1,12 +1,12 @@
 # d-react-native-styles
 
-## Project Description
+## Project description
 
-`d-react-native-styles` is a utility-first styling library for React Native applications. It allows developers to rapidly build custom user interfaces by composing utility classes directly in their components, similar to frameworks like Tailwind CSS. This library provides a flexible way to manage and customize styles, including colors, fonts, and sizes, to maintain a consistent design language across your application.
+`d-react-native-styles` is a utility-first styling helper for React Native. You compose **class name strings** (similar in spirit to Tailwind CSS) and pass them to `styles()`; the library maps those names to React Native style objects. Colors, font scales, sizes, optional light/dark schemes, and your own class names are all configurable.
+
+**Naming note:** This is **not** a Tailwind port. Class names follow this library’s own rules (for example `p-4` and `rounded-2` use **numeric theme scales**, not Tailwind’s `rem`-based scale). See [Utility classes](#utility-classes) below.
 
 ## Installation
-
-Add `d-react-native-styles` to your project using npm or yarn:
 
 ```bash
 npm install d-react-native-styles
@@ -18,211 +18,158 @@ or
 yarn add d-react-native-styles
 ```
 
-## Usage Guide
+## Usage guide
 
-### Basic Usage
+### 1. Load theme early (recommended)
 
-Before using the `styles()` function, it's good practice to initialize your custom styles, especially if you have custom colors, fonts, or sizes. You can create a dedicated function, often named `initStyles()` or similar, in your project (e.g., in `styleConfig.js` or at the root of your app like `App.js` or `index.js`) to centralize these configurations.
+Call `Colors.loadColors`, `Fonts.loadFonts`, `Sizes.loadSizes`, and optionally `Scheme.loadSchemes` / `Styles.loadStyles` **once at startup**, before your UI renders.
 
-This `initStyles()` function would typically call the methods for loading your themes, as described in the "Customizing Styles" section.
+**Important:** In your app entry file (e.g. `index.js` / `index.tsx`), import your config **first** so it runs before other files import `d-react-native-styles`. That way `Scheme` (if you use it) picks up the same color keys you configured on `Colors`.
 
-**Example of an `initStyles` function (e.g., in `styleConfig.js`):**
-
-```javascript
-// styleConfig.js
-import { Colors, Fonts, Sizes } from 'd-react-native-styles';
-import { Platform } from 'react-native'; // If customizing fonts platform-specifically
-
-export const initStyles = () => {
-  Colors.loadColors({
-    primary: '#007bff',
-    secondary: '#6c757d',
-    // ... your other custom colors
-  });
-
-  const customFontConfig = {
-    [Platform.OS]: {
-      family: {
-        regular: 'YourApp-Regular',
-        bold: 'YourApp-Bold',
-        // ... other font weights
-      },
-      baseFontSize: 16,
-    }
-  };
-  Fonts.loadFonts(customFontConfig); // Add customFonts object as second param if needed
-
-  Sizes.loadSizes({
-    'xs': 8,
-    'sm': 12,
-    // ... your other custom sizes
-  });
-};
-
-// Call this function once at the entry point of your application
-// For example, in your main App.js or index.js:
-// import { initStyles } from './styleConfig'; // Adjust path as needed
-// initStyles();
+```typescript
+// index.tsx (entry) — put this import first
+import "./styleConfig";
+import { AppRegistry } from "react-native";
+import App from "./App";
+// ...
 ```
 
-After setting up your styles, you can use the `styles()` function, which you can import and use to apply utility classes to your React Native components:
+### 2. Example `styleConfig`
 
-```javascript
-import React from 'react';
-import { View, Text } from 'react-native';
-import { styles } from 'd-react-native-styles';
-// Assuming initStyles() has been called elsewhere, e.g., in App.js or index.js
-
-const MyComponent = () => {
-  return (
-    <View style={styles('bg-primary p-4 rounded-lg')}>
-      <Text style={styles('text-white text-lg font-bold')}>
-        Hello, d-react-native-styles!
-      </Text>
-    </View>
-  );
-};
-
-export default MyComponent;
-```
-
-This example applies a primary background color, padding, and rounded corners to the `View`, and styles the `Text` with white color, large font size, and bold font weight. Remember that for `bg-primary` and custom fonts/sizes to work as expected, they should be defined during your `initStyles()` call.
-
-### Customizing Styles
-
-`d-react-native-styles` allows you to customize the default theme (colors, fonts, sizes) to match your application's design requirements.
-
-**1. Customizing Colors:**
-
-You can add or override default colors using the `Colors.loadColors()` method. It's recommended to do this at the entry point of your application (e.g., `App.js` or `index.js`).
-
-```javascript
-// styleConfig.js (or any configuration file you prefer)
-import { Colors } from 'd-react-native-styles';
+```typescript
+// styleConfig.ts
+import { Platform } from "react-native";
+import { Colors, Fonts, Sizes, Styles, Scheme } from "d-react-native-styles";
 
 Colors.loadColors({
-  primary: '#007bff', // Override default primary
-  secondary: '#6c757d',
-  success: '#28a745',
-  danger: '#dc3545',
-  warning: '#ffc107',
-  info: '#17a2b8',
-  // Add your custom colors
-  'custom-blue': '#3498db',
-  'brand-red': '#e74c3c',
+  primary: "#007bff",
+  secondary: "#6c757d",
 });
 
-// Import this file in your main App.js or index.js
-// import './styleConfig';
-```
-
-**2. Customizing Fonts:**
-
-Fonts can be customized using the `Fonts.loadFonts()` method. This method takes two arguments: `fonts` (a platform-specific font configuration) and an optional `customFonts` object for more direct font style definitions. You would typically define your base font families within the platform-specific configuration and then can add or override specific text styles (like `h1`, `text`, etc.) using `customFonts`.
-
-```javascript
-// styleConfig.js
-import { Platform } from 'react-native';
-import { Fonts } from 'd-react-native-styles';
-
-const customFontConfig = {
-  [Platform.OS]: { // You can also specify 'ios' or 'android'
-    family: {
-      regular: 'YourApp-Regular', // Replace with your actual font family names
-      bold: 'YourApp-Bold',
-      medium: 'YourApp-Medium',
-      semiBold: 'YourApp-SemiBold',
-      light: 'YourApp-Light',
+Fonts.loadFonts(
+  {
+    [Platform.OS]: {
+      family: {
+        regular: "YourApp-Regular",
+        bold: "YourApp-Bold",
+        medium: "YourApp-Medium",
+        semiBold: "YourApp-SemiBold",
+        light: "YourApp-Light",
+      },
+      baseFontSize: 16,
     },
-    baseFontSize: 16, // Optional: define a base font size
-  }
-};
-
-const additionalFontStyles = {
-  'display': { // Example of a custom font style
-    fontSize: 32,
-    fontFamily: customFontConfig[Platform.OS].family.bold, // Using one of the defined families
   },
-  // You can override default styles like h1, text, etc. here too
-  'h1': {
-    fontSize: 28,
-    fontFamily: customFontConfig[Platform.OS].family.bold,
-  }
-};
-
-Fonts.loadFonts(customFontConfig, additionalFontStyles);
-
-// Import this file in your main App.js or index.js
-// import './styleConfig';
-```
-This allows for fine-grained control over font families and styles used by the utility classes.
-
-**3. Customizing Sizes:**
-
-Sizes (for padding, margin, width, height, font sizes, etc.) can be customized using `Sizes.loadSizes()`.
-
-```javascript
-// styleConfig.js
-import { Sizes } from 'd-react-native-styles';
+  {
+    display: {
+      fontSize: 32,
+      fontFamily: "YourApp-Bold",
+    },
+  },
+);
 
 Sizes.loadSizes({
-  'xs': 8,
-  'sm': 12,
-  'md': 16,
-  'lg': 24,
-  'xl': 32,
-  // Add your custom sizes
-  'icon-sm': 20,
-  'button-height': 48,
+  paddingMedium: 20,
+  borderRadiusMedium: 10,
 });
+
+Styles.loadStyles({
+  "shadow-card": {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+});
+
+// Optional: light / dark palettes (same keys in light and dark)
+Scheme.loadSchemes({
+  light: { screen: "#ffffff", text: "#0D0F12" },
+  dark: { screen: "#0D0F12", text: "#FFFFFF" },
+});
+// Scheme.setScheme("light" | "dark" | "default") when you want to override system
 ```
 
-Make sure to import your `styleConfig.js` (or equivalent) early in your application lifecycle, for example, in your root `index.js` or `App.tsx`:
+### 3. Using `styles()` in components
 
-```javascript
-// index.js or App.tsx
-import './styleConfig'; // Path to your configuration file
-// ... rest of your app initialization
+`styles()` accepts one or more strings (split on spaces), arrays, and optional object forms (see source in `src/style.ts`). It returns an **array** of style objects suitable for React Native’s `style` prop.
+
+```tsx
+import React from "react";
+import { View, Text } from "react-native";
+import { styles } from "d-react-native-styles";
+
+const Example = () => (
+  <View style={styles("bg-primary p-3 rounded-2")}>
+    <Text style={styles("text-white text-large font-weight-bold")}>
+      Hello, d-react-native-styles
+    </Text>
+  </View>
+);
+
+export default Example;
 ```
 
-### Main Exports
+After `Colors.loadColors({ primary: "..." })`, utilities like `bg-primary` and `text-primary` use those values. Typography presets from fonts include `h1`–`h5`, `text`, `text-small`, `text-medium`, `text-large`, `label`, etc. Font weight utilities use the **`font-weight-<value>`** pattern (e.g. `font-weight-bold`, `font-weight-700`), not `font-bold`.
 
-The library exports several components and types to give you full control over the styling system:
+### Utility classes
 
-*   **`styles` (function):** The primary function used to apply utility classes to your components.
-*   **`Colors` (object):** Manages the color palette. Use `Colors.loadColors({...})` to customize. Contains predefined color values.
-*   **`Scheme` (object):** Manages color schemes (e.g., for light/dark mode support). Use `Scheme.loadSchemes({...})` to define schemes and `Scheme.setScheme('light' | 'dark' | 'default')` to switch between them.
-*   **`Fonts` (object):** Manages font families and styles. Use `Fonts.loadFonts({...})` to customize.
-*   **`Sizes` (object):** Manages size scales (for padding, margins, font sizes, etc.). Use `Sizes.loadSizes({...})` to customize.
-*   **`Styles` (object):** Provides access to pre-compiled style objects for custom components or more complex style compositions. This is exported from `d-react-native-styles/dist/style/_style-custom` and contains the custom styles you define.
-*   **Types:**
-    *   `ColorKeyType`: TypeScript type for valid color keys.
-    *   `SizeKeyType`: TypeScript type for valid size keys.
-    *   `FontKeyType`: TypeScript type for valid font keys.
+Useful references in the repo:
 
-These exports allow for advanced customization and integration with your project's specific needs.
+| Area | Module | Examples |
+|------|--------|----------|
+| Padding / margin | `src/style/_padding-margin.ts` | `p-0` … `p-10`, `m-3`, `px-2`, `mt-4` (numbers map to theme sizes, not Tailwind spacing) |
+| Background | `src/style/_background.ts` | `bg-<colorKey>` (e.g. `bg-primary`, `bg-white`), `bg-transparent` |
+| Text color | `src/style/_text.ts` | `text-<colorKey>` |
+| Border radius | `src/style/_border.ts` | `rounded`, `rounded-0` … `rounded-4`, `rounded-pill`, directional variants like `rounded-top-2` |
+| Typography | `src/style/_text.ts` + fonts | Presets: `h1`, `text`, `text-large`, …; sizes: `font-size-16`; weights: `font-weight-bold` |
+| Flex, position, width/height, shadows, image | other files under `src/style/` | See each file’s exports |
 
-## Available Scripts
+Default color keys are listed in `src/color/_colors-default.ts`; default size tokens in `src/size/_sizes-default.ts`.
 
-This project includes several scripts defined in `package.json` to help with development:
+### Customizing styles (summary)
 
-*   `npm run android`: Runs the application on an Android emulator or connected device.
-*   `npm run ios`: Runs the application on an iOS simulator or connected device.
-*   `npm start`: Starts the Metro bundler for React Native.
-*   `npm test`: Runs tests using Jest.
-*   `npm run lint`: Lints the codebase using ESLint to check for code quality and style issues.
-*   `npm run build`: Builds the library for distribution, creating JavaScript files and type definitions in the `dist/` directory.
+- **Colors:** `Colors.loadColors({ key: "#hex" | "rgba(...)" })` — keys become `bg-*` and `text-*` (and border color utilities).
+- **Fonts:** `Fonts.loadFonts(platformFontMap, optionalCustomPresets)` — second argument merges extra presets (objects of React Native text styles) into the same map used for class names like `h1`, `text`, your own keys such as `display`.
+- **Sizes:** `Sizes.loadSizes({ ... })` — overrides tokens used by padding, margins, borders, etc. TypeScript users: keys align with `SizeKeyType` from the package.
+- **Schemes:** `Scheme.loadSchemes({ light: { ... }, dark: { ... } })` — **light** and **dark** must define the **same keys** (the library logs an error if they differ). Use `Scheme.setScheme("light" | "dark" | "default")` to pin or follow the system when `default`.
+- **Custom class names:** `Styles.loadStyles({ "my-class": { /* RN styles */ } })` then `styles("my-class")`.
 
-You can also use `yarn <script_name>` (e.g., `yarn android`).
+## Main exports
+
+| Export | Role |
+|--------|------|
+| `styles` | Build style arrays from utility / custom class strings. |
+| `Colors` | Color palette; `loadColors` merges keys onto the shared instance. |
+| `Scheme` | Light/dark color sets; `loadSchemes`, `setScheme`, `getScheme`. |
+| `Fonts` | `loadFonts` for platform families + optional named presets. |
+| `Sizes` | `loadSizes` for theme tokens (spacing, radii, etc.). |
+| `Styles` | `loadStyles` for arbitrary extra class → style maps consumed by `styles()`. |
+
+**Types** (from the package entry):
+
+- `ColorKeyType` — built-in color keys plus `"transparent"` where applicable.
+- `SizeKeyType` — keys of the default size map (what you can override with `loadSizes`).
+- `FontKeyType` — top-level keys of the default font config shape (e.g. platform entries), **not** the typography class names (`h1`, `text`, …).
+
+Import everything from the package root, for example:
+
+`import { styles, Colors, Scheme, Fonts, Sizes, Styles } from "d-react-native-styles";`
+
+## Available scripts (this repository)
+
+These scripts are for **developing this library** (it includes a small React Native app), not for end-users of the published package:
+
+- `npm run android` / `npm run ios` — run the example app.
+- `npm start` — Metro bundler.
+- `npm test` — Jest.
+- `npm run lint` — ESLint.
+- `npm run build` — emit `dist/` (TypeScript declarations + transpiled JS).
 
 ## License
 
-This project does not currently have a LICENSE file. It is recommended to add one. For open source projects, consider licenses like MIT, Apache 2.0, or GPL, depending on your requirements.
-
-Once a license is chosen, you can add a section like this:
-
-`This project is licensed under the [Your License Name Here] - see the LICENSE.md file for details.`
+This project does not currently include a `LICENSE` file in the repository. Add one when you publish (for example MIT), then document it here.
 
 ## Contributing
 
-Contributions are welcome! If you have ideas for improvements, new features, or find any bugs, please feel free to open an issue or submit a pull request.
+Contributions are welcome: issues and pull requests for fixes, docs, and new utilities are appreciated.
